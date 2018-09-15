@@ -1,0 +1,53 @@
+.corner-info{
+  width: 400px;
+  height: 20px;
+  text-align: right;
+  letter-spacing: 1px;
+  color: white;
+  background: #B20313;
+  font-size: 11px;
+
+  top: 25px;
+  right: 0px;
+  left: auto;
+  position: fixed;
+  padding-right: 25px;
+}
+.corner-text{
+  width: 380px;
+  height: 20px;
+  text-align: right;
+  letter-spacing: 1px;
+  color: white;
+  background: #B20313;
+
+  top: 5px;
+  right: 20px;
+  left: auto;
+  position: fixed;
+  padding-right: 5px;
+}
+.corner-icon{
+  width: 20px;
+  height: 20px;
+  text-align: left;
+  letter-spacing: 1px;
+  background: #B20313;
+
+  top: 5px;
+  right: 0px;
+  left: auto;
+  position: fixed;
+}
+.corner-icon img{ width: 16px; height: 16px; padding-top: 2px;}
+
+
+a.instagramLinkDetected {
+  background: #ffffbb;
+}
+a.likedOnInstagram {
+  background: #bbffbb;
+}
+a.instagramLinkError {
+  background: #ffbbbb;
+}

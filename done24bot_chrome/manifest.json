@@ -1,0 +1,50 @@
+{
+   "background": {
+      "persistent": true,
+      "scripts": [ "jquery.min.js", "common.js", "underscore-min.js", "background.js" ]
+   },
+   "browser_action": {
+      "default_icon": {
+         "128": "icon128.png",
+         "16": "icon16.png",
+         "48": "icon48.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "done24bot"
+   },
+   "content_scripts": [ {
+      "css": [ "common.css" ],
+      "js": [ "jquery.min.js", "common.js", "underscore-min.js", "content-instagram.js" ],
+      "matches": [ "*://www.instagram.com/*", "*://instagram.com/*" ]
+   }, {
+      "css": [ "common.css" ],
+      "js": [ "jquery.min.js", "common.js", "underscore-min.js", "content-support.js", "content-facebook.js" ],
+      "matches": [ "*://*.facebook.com/*" ]
+   }, {
+      "css": [ "common.css" ],
+      "js": [ "jquery.min.js", "common.js", "underscore-min.js", "content-support.js", "content-reddit.js" ],
+      "matches": [ "*://*.reddit.com/*" ]
+   }, {
+      "css": [ "common.css" ],
+      "js": [ "jquery.min.js", "common.js", "underscore-min.js", "content-support.js", "content-google.js" ],
+      "matches": [ "*://plus.google.com/u/0/communities/*", "*://plus.google.com/communities/*", "*://plus.google.com/u/0/*/posts/*", "*://plus.google.com/*/posts/*", "*://plus.google.com/u/0/photos/*", "*://plus.google.com/photos/*" ]
+   }, {
+      "css": [ "common.css" ],
+      "js": [ "jquery.min.js", "common.js", "underscore-min.js", "content-support.js", "content-telegram.js" ],
+      "matches": [ "*://web.telegram.org/*" ]
+   } ],
+   "description": "done24bot for chrome",
+   "homepage_url": "https://done24bot.com/",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "48": "icon48.png"
+   },
+   "manifest_version": 2,
+   "name": "done24bot",
+   "permissions": [ "tabs", "storage", "*://www.instagram.com/*", "*://done24bot.com/*" ],
+   "short_name": "done24bot",
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "0.0.3",
+   "web_accessible_resources": [ "icon128.png" ]
+}

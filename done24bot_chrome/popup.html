@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+  <head>
+    <title>LikeItAll</title>
+
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- font-awesome -->
+    <link href='https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css' rel='stylesheet'>
+
+    <!-- bootstrap-select -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"> -->
+
+    <style>
+      body {
+        width:  251px;
+      }
+      i.fa {
+        margin-right:  10px;
+      }
+      table tr.button{
+        cursor: pointer;
+      }
+      table {
+        margin-bottom: 0px !important;
+      }
+      input {
+        width: 200px;
+      }
+      tr.stronger{
+        font-weight: bold;
+      }
+      .progress{
+        margin-bottom: 0px;
+        margin-top: 3px;
+      }
+      #m1_toggle_on_off{
+        font-size: 1.8rem;
+      }
+      .btn:focus{
+        outline: none;
+      }
+      .info{
+        margin-top: 10px;
+        font-size: 1.3rem;
+        color: #666;
+        text-align: justify;
+      }
+      *:focus {
+        outline: none !important;
+      }
+
+      #issue_content {
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        border-color: lightgrey;
+        padding: 5px;
+        width:100%;
+        font-size:13px;
+        line-height:13px;
+        margin-top:5px;
+      }
+      #issue_submit {
+        float:right;
+        margin-top:5px;
+      }
+      tr.button-thin td{
+        padding: 4px 8px !important;
+        background: #f9f9f9;
+      }
+      tr.button-thin td:hover{
+        background: #f0f0f0;
+      }
+
+
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!-- <script src="bootstrap-select.min.js"></script> -->
+    <script src="common.js"></script>
+    <script src="popup.js"></script>
+
+  </head>
+  <body>
+
+
+
+
+
+
+
+    <!-- MAIN -->
+
+<!--     <a href="https://www.likeitall.com" style="width:150px;display:block;margin:auto;">
+      <img alt="LikeItAll Logo" src="/logo-title-bold.png" style="width:150px;margin:5px auto;">
+    </a>
+ -->
+
+    <table class='table table-hover m1'>
+      <tr class="button" id='m1_toggle_on_off' data-state='off'>
+        <th style="border-top:none;">
+          <i class="fa fa-toggle-off" aria-hidden="true"></i>
+          Likes
+          <span class="state">Off</span>
+          <a target="_blank" href="https://www.likeitall.com">
+            <img alt="done24bot Logo" src="/icon128.png" style="width:25px;float:right">
+          </a>
+
+        </th>
+      </tr>
+
+<!--      <tr class="button" id='m1_toggle_automatic' data-state='off'>
+        <td>
+          <i class="fa fa-toggle-off" aria-hidden="true"></i>
+          <span class="state">Off</span>
+          - Fully Automatic
+          <span id="links_detected" class="badge">3</span>
+        </td>
+      </tr>
+-->
+
+      <tr class="button" data-state='off'>
+        <td>
+        <!-- Select Mode: -->
+        <div class="btn-group btn-group-sm mode-select" role="group">
+          <button id="mode-semi" type="button" class="btn btn-default">Semi</button>
+          <button id="mode-auto" type="button" class="btn btn-default">Auto</button>
+        </div>
+
+        </td>
+      </tr>
+
+
+      <tr class="button" id="m2_reset_count">
+        <td>
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+          Reset
+          </td>
+      </tr>
+
+      <tr class="button" id='m1_settings' style="display:none;">
+        <td>
+          <i class="fa fa-cog" aria-hidden="true"></i>
+          Settings
+        </td>
+</tr>
+    </table>
+
+
+
+    <!-- SETTINGS -->
+    <table class='table table-hover m2' style='display:none;'>
+
+      <!-- TOKEN EXISTS -->
+      <tr id='token_exists'>
+        <td style="border-top:none">
+          <i class="fa fa-envelope-o" aria-hidden="true"  style="width:10px;"></i>
+          <strong id="email_final"></strong>
+        </td>
+      </tr>
+
+      <!-- NO TOKEN, SUBMIT PASSWORD (AKA KEY) -->
+      <tr id='need_key' data-state='off'>
+        <td style="border-top:none">
+          <i class="fa fa-envelope-o" aria-hidden="true"  style="width:10px;"></i>
+          <input type="text" name="username" placeholder="email-address" id="email">
+          <div style="clear:both;width:100%;height:5px;"></div>
+          <i class="fa fa-key" aria-hidden="true"  style="width:10px;"></i>
+          <input type="password" name="password" placeholder="key-code" id="instalikeitall_key">
+          <button id="login_submit" type="submit" class="btn btn-default btn-xs" style="float:right;margin-top:5px;margin-right:10px">Log In</button>
+        </td>
+      </tr>
+
+      <tr class="button" id="m2_logout" >
+        <td>
+          <i class="fa fa-sign-out" aria-hidden="true"></i>
+          Log Out
+          </td>
+      </tr>
+      <tr class="button" id="m2_reset_count">
+        <td>
+          <i class="fa fa-refresh" aria-hidden="true"></i>
+          Reset
+          </td>
+      </tr>
+      <tr class="button button-thin" id='m2_double' data-state='off'>
+        <td>
+          <i class="fa fa-toggle-off" aria-hidden="true"></i>
+          Slow Mode
+        </td>
+      </tr>
+      <tr class="button button-thin" id='m2_wv' data-state='off'>
+        <td>
+          <i class="fa fa-toggle-off" aria-hidden="true"></i>
+          Watch Videos: 15 sec.
+        </td>
+      </tr>
+
+<!--       <tr class="button button-thin" id='m2_tg2' data-state='off'>
+        <td>
+          <i class="fa fa-toggle-off" aria-hidden="true"></i>
+          Telegram: Algorithm-B
+        </td>
+      </tr>
+ -->
+
+<!--       <a id="rate-us" target="_blank" href="https://www.likeitall.com/rate-us">
+        <tr class="button" id='m2_rate_us'>
+
+        <td>
+          <i class="fa fa-star" aria-hidden="true"></i>
+          Rate Us
+        </td>
+
+      </tr>
+      </a>
+ -->
+
+ <!--     <tr class="button">
+        <td>
+          <span style="font-size:14px;">
+            <i class="fa fa-signal" aria-hidden="true"></i>
+            <a href="https://twitter.com/LikeItAllApp" target="_blank" style="color:#111111;">Check app status @LikeItAllApp</a>
+          </span>
+        </td>
+      </tr>
+      <tr class="button" id='m2_report'>
+        <td>
+          <i class="fa fa-flask" aria-hidden="true"></i>
+          Report Issue
+          <span id='version'></span>
+        </td>
+      </tr> -->
+    </table>
+
+
+
+
+
+    <!-- ABOUT -->
+    <table class='table table-hover m3' style='display:none;'>
+      <tr id='m3_toggle_on_off' data-state='off'>
+        <td>
+          <!-- <i class="fa fa-facebook" aria-hidden="true"></i> -->
+          <span style="font-size:16px"> Report Issue: </span>
+          <br>
+          <textarea id="issue_content" name="report_description" rows=5 placeholder="Please include a detailed description of your issue"></textarea>
+          <button id="issue_submit" type="submit" class="btn btn-default btn-xs">Send</button>
+
+          <!-- <input type="text" name="firstname" placeholder="key" id="key"> -->
+        </td>
+      </tr>
+    </table>
+
+          <div class="progress">
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%" id="progress_bar">
+              ...
+            </div>
+          </div>
+  </body>
+</html>
+
+
+<!--
+ -->
